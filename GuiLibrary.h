@@ -107,6 +107,10 @@ public:
     void pressed(bool ispressed);
     bool transparent() { return (settingsFlags >> TRANSPARENT) & 1; }
     void transparent(bool istransparent);
+
+    void setBackground(uint16_t color) {
+        backgroundColour = color;
+    }
     
     GuiList children;
     virtual void addChild(GuiElement *child); // Add a child node to this node

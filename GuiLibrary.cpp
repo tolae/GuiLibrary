@@ -156,6 +156,7 @@ void GuiElement::draw(void) {
 
     while (tmphead != NULL) {
         GuiElement* element = (GuiElement*)tmphead->element();
+        element->drawBase();
         element->draw();
 
         if (tmphead->next() == NULL)

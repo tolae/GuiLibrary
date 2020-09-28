@@ -28,7 +28,6 @@ void GuiLabel::draw(bool andBase) {
     int16_t newx = absoluteX() + padding;
     int16_t newy = absoluteY() + padding;
 
-    // only do this if there is some text to draw
     if (labelText != NULL) {
         // vertically align
         newy = GuiUtils::getElementCentreY(this) - ((labelFontSize * 7)/2);
@@ -41,7 +40,9 @@ void GuiLabel::draw(bool andBase) {
             newx = extraXOffset + (newx + width) - (strlen(labelText) * (labelFontSize *6)) - padding;
         }
         else {
+
             newx += extraXOffset;
+
         }
 
         GuiUtils::drawText(this, labelText, foregroundColour, newx, newy, labelFontSize);

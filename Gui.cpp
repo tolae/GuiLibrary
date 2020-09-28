@@ -78,6 +78,8 @@ void Gui::update(void) {
     static int16_t pressing_x, pressing_y;
     static uint16_t stamp = millis();
 
+
+
     // Retrieve a point  
     TSPoint p = ts->getPoint();
     
@@ -114,16 +116,15 @@ void Gui::update(void) {
     }
     else if (rotation == 180) {
         
-        p.x = map(p.x, TS_MINX, TS_MAXX, _tft->width(), 0);
-        p.y = map(p.y, TS_MINY, TS_MAXY, _tft->height(), 0);
+        p.x = map(p.x, TS_MINX, TS_MAXX, 0, _tft->height());
+        p.y = map(p.y, TS_MINY, TS_MAXY, 0, _tft->width());
     }
     else if (rotation == 270) {
         int16_t oldx = p.x;
-        p.x = map(p.y, TS_MINY, TS_MAXY, _tft->width(), 0);
-        p.y = map(oldx, TS_MINX, TS_MAXX, 0, _tft->height());
-    }
+        p.x = map(p.y, 100, 900, _tft->width(),0);
+        p.y = map(oldx, 150, 900, 0, _tft->height());
 
-    Serial.print("x: "); Serial.print(p.x); Serial.print(" y: "); Serial.println(p.y);
+    }
 
     pressing_x = p.x;
     pressing_y = p.y;
