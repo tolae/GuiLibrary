@@ -22,7 +22,7 @@ void GuiLabel::draw(bool andBase) {
     if (!visible()) return;
     
     if (andBase)
-        GuiElement::drawBase(); 
+        GuiElement::drawBase();
     
      // draw the text
     int16_t newx = absoluteX() + padding;
@@ -40,15 +40,41 @@ void GuiLabel::draw(bool andBase) {
             newx = extraXOffset + (newx + width) - (strlen(labelText) * (labelFontSize *6)) - padding;
         }
         else {
-
             newx += extraXOffset;
-
         }
 
         GuiUtils::drawText(this, labelText, foregroundColour, newx, newy, labelFontSize);
     }
     // draw all children
     GuiElement::draw();
+}
+
+void GuiLabel::clear(uint8_t chars_to_clear)
+{
+    if (!visible()) return;
+
+    if (labelText != NULL)
+    {
+        int16_t newx = absoluteX() + padding;
+        int16_t newy = absoluteY() + padding;
+        newy = GuiUtils::getElementCentreY(this) - ((labelFontSize * 7)/2);
+
+        if (textAlignH == TEXT_H_ALIGN_CENTRE) {
+            uint16_t centrex = GuiUtils::getElementCentreX(this);
+            newx = extraXOffset + centrex - ((strlen(labelText) * (labelFontSize *6)) / 2);
+        }
+        else if (textAlignH == TEXT_H_ALIGN_RIGHT) {
+            newx = extraXOffset + (newx + width) - (strlen(labelText) * (labelFontSize *6)) - padding;
+        }
+        else {
+            newx += extraXOffset;
+        }
+        
+        for (int i = 0; i < chars_to_clear; i++)
+        {
+            _tft->fillRect(newx + i * 6 * labelFontSize, newy, 6 * labelFontSize, 8 * labelFontSize, backgroundColour);
+        }
+    }
 }
 
 //////////////////////////

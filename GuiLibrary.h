@@ -170,6 +170,7 @@ public:
     uint8_t fontSize() { return labelFontSize; }
     void draw();
     void draw(bool andBase);
+    void clear(uint8_t chars_to_clear);
     uint8_t extraXOffset = 0;
 private:
     char const* labelText = NULL;

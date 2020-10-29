@@ -144,7 +144,7 @@ void GuiElement::drawBase(void) {
         
         if (!enabled()) {
             colour = COLOR_DARKGREY;
-        }        
+        }
         _tft->drawRect(absoluteX(), absoluteY(), width, height, colour);
     }
 }
